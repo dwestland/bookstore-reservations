@@ -1,6 +1,8 @@
-// make into module
 
-
+interface BookImage {
+    [key: string]: any;
+  }
+  
 export const books = [
     {
         id: 1,
@@ -274,7 +276,7 @@ export const books = [
     },
     {
         id: 19,
-        title: 'Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future',
+        title: 'Elon Musk',
         summary: 'Ashlee Vance delves into the extraordinary life of Silicon Valley\'s most audacious entrepreneur, Elon Musk, providing a fascinating look into the future of the tech industry.',
         author: 'Ashlee Vance',
         featuredBook: false,
@@ -453,3 +455,36 @@ export const books = [
         coverImage: 'the-little-prince.jpg',
     },
 ]
+
+export const images: BookImage = {
+    'think-and-grow-rich.jpg': require('@/assets/images/think-and-grow-rich.jpg'),
+    'the-lean-startup.jpg': require('@/assets/images/the-lean-startup.jpg'),
+    'pride-and-prejudice.jpg': require('@/assets/images/pride-and-prejudice.jpg'),
+    'outlander.jpg': require('@/assets/images/outlander.jpg'),
+    'steve-jobs.jpg': require('@/assets/images/steve-jobs.jpg'),
+    'the-diary-of-a-young-girl.jpg': require('@/assets/images/the-diary-of-a-young-girl.jpg'),
+    'the-cat-in-the-hat.jpg': require('@/assets/images/the-cat-in-the-hat.jpg'),
+    'harry-potter-and-the-sorcerers-stone.jpg': require('@/assets/images/harry-potter-and-the-sorcerers-stone.jpg'),
+    'to-kill-a-mockingbird.jpg': require('@/assets/images/to-kill-a-mockingbird.jpg'), 
+    '1984.jpg': require('@/assets/images/1984.jpg'),
+    'becoming.jpg': require('@/assets/images/becoming.jpg'),
+    'where-the-wild-things-are.jpg': require('@/assets/images/where-the-wild-things-are.jpg'),
+    'the-alchemist.jpg': require('@/assets/images/the-alchemist.jpg'),
+    'bridget-joness-diary.jpg': require('@/assets/images/bridget-joness-diary.jpg'),
+    'the-4-hour-workweek.jpg': require('@/assets/images/the-4-hour-workweek.jpg'),
+    'the-very-hungry-caterpillar.jpg': require('@/assets/images/the-very-hungry-caterpillar.jpg'),
+    'life-of-pi.jpg': require('@/assets/images/life-of-pi.jpg'),
+    'eleanor-oliphant-is-completely-fine.jpg': require('@/assets/images/eleanor-oliphant-is-completely-fine.jpg'),
+    'elon-musk-tesla-spacex-and-the-quest-for-a-fantastic-future.jpg': require('@/assets/images/elon-musk-tesla-spacex-and-the-quest-for-a-fantastic-future.jpg'),
+    'matilda.jpg': require('@/assets/images/matilda.jpg'),
+    'the-great-gatsby.jpg': require('@/assets/images/the-great-gatsby.jpg'),
+    'the-fault-in-our-stars.jpg': require('@/assets/images/the-fault-in-our-stars.jpg'),
+    'lean-in-women-work-and-the-will-to-lead.jpg': require('@/assets/images/lean-in-women-work-and-the-will-to-lead.jpg'),
+    'i-know-why-the-caged-bird-sings.jpg': require('@/assets/images/i-know-why-the-caged-bird-sings.jpg'),
+    'green-eggs-and-ham.jpg': require('@/assets/images/green-eggs-and-ham.jpg'),
+    'a-game-of-thrones.jpg': require('@/assets/images/a-game-of-thrones.jpg'),
+    'me-before-you.jpg': require('@/assets/images/me-before-you.jpg'),
+    'start-with-why.jpg': require('@/assets/images/start-with-why.jpg'),
+    'maus.jpg': require('@/assets/images/maus.jpg'),
+    'the-little-prince.jpg': require('@/assets/images/the-little-prince.jpg')
+  }
