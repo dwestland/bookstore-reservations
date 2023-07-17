@@ -1,54 +1,89 @@
-import { StyleSheet, Image, ScrollView } from 'react-native';
-import { books } from '@/bookData';
+import { StyleSheet, Image, ScrollView, FlatList } from 'react-native';
+import { books, images } from '@/bookData';
 
-import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from 'react';
 
 export default function LandingPageScreen() {
-
-const featuredBooks = books.filter((book) => book.featuredBook === true);
-const topRatedBooks = books.filter((book) => book.topRated === true);
-const newlyAddedBooks = books.filter((book) => book.newlyAdded === true);
-
-const imageRoot = '@/assets/images/';
+  const featuredBooks = books.filter((book) => book.featuredBook === true);
+  const topRatedBooks = books.filter((book) => book.topRated === true);
+  const newlyAddedBooks = books.filter((book) => book.newlyAdded === true);
 
   return (
     <View style={styles.container} >
       <ScrollView showsVerticalScrollIndicator={false}>
       <Text style={styles.title}>Bookstore Reservations</Text>
-      <Image
-        source={require('@/assets/images/1984.jpg')}
-      />
-
+      
       <Text style={styles.subTitle}>Featured Books</Text>
-      {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}> */}
-        {featuredBooks.map(book => (
-          <View key={book.id} style={styles.card}>
-            <Image
-              source={require('@/assets/images/1984.jpg')}
-              style={styles.image}
-            />
-            <Text style={styles.cardTitle}>{book.title}</Text>
-            <Text style={styles.cardTitle}>{book.coverImage}</Text>
-            <Text>{book.author}</Text>
-            <Text>Rating: {book.rating}/10</Text>
-          </View>
-        ))}
-      {/* </ScrollView> */}
+      <View style={styles.listContainer}>
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={featuredBooks}
+          renderItem={({item}) => {
+            return (
+              <View style={styles.card}>
+                <Image 
+                  source={images[item.coverImage]}
+                  style={styles.image}
+                />
+                <Text style={styles.cardTitle}>{item.title}</Text>
+                <Text>by {item.author}</Text>
+                <Text>Rating: {item.rating}/10</Text>
+              </View>
+            )
+          }}
+          keyExtractor={item => item.id.toString()}
+        />
+      </View>
 
-      <Text style={styles.subTitle}>Top-rated Books</Text>
-      {topRatedBooks.map(book => (
-        <Text key={book.id}>{book.title}</Text> 
-      ))}
+      <Text style={styles.subTitle}>Top Rated Books</Text>
+      <View style={styles.listContainer}>
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={topRatedBooks}
+          renderItem={({item}) => {
+            return (
+              <View style={styles.card}>
+                <Image 
+                  source={images[item.coverImage]}
+                  style={styles.image}
+                />
+                <Text style={styles.cardTitle}>{item.title}</Text>
+                <Text>by {item.author}</Text>
+                <Text>Rating: {item.rating}/10</Text>
+              </View>
+            )
+          }}
+          keyExtractor={item => item.id.toString()}
+        />
+      </View>
 
-      <Text style={styles.subTitle}>Newly added Books</Text>
-      {newlyAddedBooks.map(book => (
-        <Text key={book.id}>{book.title}</Text> 
-      ))}
+      <Text style={styles.subTitle}>Newly Added Books</Text>
+      <View style={styles.listContainer}>
+        <FlatList
+          horizontal 
+          showsHorizontalScrollIndicator={false}
+          data={newlyAddedBooks}
+          renderItem={({item}) => {
+            return (
+              <View style={styles.card}>
+                <Image
+                  source={images[item.coverImage]}
+                  style={styles.image}
+                />
+                <Text style={styles.cardTitle}>{item.title}</Text>
+                <Text>by {item.author}</Text>
+                <Text>Rating: {item.rating}/10</Text>
+              </View>
+            )
+          }}
+          keyExtractor={item => item.id.toString()}
+        />
+      </View>
 
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
       </ScrollView>
     </View>
   );
@@ -60,13 +95,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  listContainer: {
+    width: '100%',
+    maxWidth: 500,
+  },
   title: {
     fontSize: 35,
     fontWeight: 'bold',
+    marginTop: 40,
+    textAlign: 'center',
   },
   subTitle: {
     fontSize: 20,
     fontWeight: 'bold',
+    marginTop: 20,
   },
   separator: {
     marginVertical: 30,
@@ -74,12 +116,15 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   card: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     padding: 10,
-    marginVertical: 5    
+    marginVertical: 5,
+    alignItems: 'center',
+    width: 150,
   },
   cardTitle: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   image: {
     width: 100, 
