@@ -1,7 +1,7 @@
 import { StyleSheet, Image, ScrollView, FlatList } from 'react-native';
 import { books, images } from '@/bookData';
-
 import { Text, View } from '@/components/Themed';
+import Search from '@/components/Search';
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from 'react';
 
 export default function LandingPageScreen() {
@@ -13,6 +13,9 @@ export default function LandingPageScreen() {
     <View style={styles.container} >
       <ScrollView showsVerticalScrollIndicator={false}>
       <Text style={styles.title}>Bookstore Reservations</Text>
+      <View style={styles.searchWrapper}>
+        <Search  />
+      </View>
       
       <Text style={styles.subTitle}>Featured Books</Text>
       <View style={styles.listContainer}>
@@ -94,6 +97,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    margin: 'auto',
   },
   listContainer: {
     width: '100%',
@@ -140,5 +144,8 @@ const styles = StyleSheet.create({
   rating: {
     fontSize: 14,
     color: '#444'
-  }
+  },
+  searchWrapper: {
+    margin: 'auto',
+  },
 });
