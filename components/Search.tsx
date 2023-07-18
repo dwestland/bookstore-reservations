@@ -15,7 +15,10 @@ export default function Search() {
   console.log('%c query ', 'background: red; color: white', query);
 
   let results = books
-    .filter((book) => book.title.toLowerCase().includes(query.toLowerCase()))
+    .filter((book) => 
+      book.title.toLowerCase().includes(query.toLowerCase()) ||
+      book.author.toLowerCase().includes(query.toLowerCase()) ||
+      book.genre.toLowerCase().includes(query.toLowerCase()))
     .map(book => (
       <View style={styles.row} key={book.id} >
         <Text style={styles.cell}>{book.title}</Text>
@@ -76,15 +79,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 10,
-    lightColor: '#eee',
-    darkColor: 'rgba(255,255,255,0.1)',
   },
   cell: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
-    borderWidth: 1,
+    borderWidth: 0,
   },
   noResults: {
     fontSize: 20,

@@ -14,7 +14,7 @@ export default function LandingPageScreen() {
       <ScrollView showsVerticalScrollIndicator={false}>
       <Text style={styles.title}>Bookstore Reservations</Text>
       <View style={styles.searchWrapper}>
-        <Search  />
+        <Search />
       </View>
       
       <Text style={styles.subTitle}>Featured Books</Text>
@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginTop: 20,
+    marginLeft: 20,
   },
   separator: {
     marginVertical: 30,
