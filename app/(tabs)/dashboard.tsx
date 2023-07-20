@@ -1,26 +1,25 @@
 import { StyleSheet, Image, ScrollView, FlatList, Pressable } from 'react-native';
 import { books, images } from '@/bookData';
 import { Text, View } from '@/components/Themed';
-import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from 'react';
 import { Link } from 'expo-router';
 
 export default function LandingPageScreen() {
-  const featuredBooks = books.filter((book) => book.featuredBook === true);
-  const topRatedBooks = books.filter((book) => book.topRated === true);
-  const newlyAddedBooks = books.filter((book) => book.newlyAdded === true);
+  const isReserved = books.filter((book) => book.isReserved === true);
+  const wasReservedBooks = books.filter((book) => book.wasReserved === true);
+
 
   return (
     <View style={styles.container} >
       <ScrollView showsVerticalScrollIndicator={false}>
       <Text style={styles.title}>Dashboard</Text>
 
-      
+
       <Text style={styles.subTitle}>My Reserved Books</Text>
       <View style={styles.listContainer}>
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={featuredBooks}
+          data={isReserved}
           renderItem={({item}) => {
             return (
               <View>
@@ -49,7 +48,7 @@ export default function LandingPageScreen() {
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={topRatedBooks}
+          data={wasReservedBooks}
           renderItem={({item}) => {
             return (
               <View>
@@ -116,7 +115,6 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 20,
-    // fontWeight: 'bold',
     textAlign: 'center',
     marginTop: 10,
   },

@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, ScrollView } from 'react-native';
-import { books, images } from '@/bookData';
-
-import { ExternalLink } from './ExternalLink';
-import { MonoText } from './StyledText';
+import { StyleSheet, TextInput, Pressable } from 'react-native';
+import { books } from '@/bookData';
 import { Text, View } from './Themed';
-import Table from './Table';
+import { Link } from 'expo-router';
 
 import Colors from '@/constants/Colors';
 
 export default function Search() {
   const [query, setQuery] = useState('');
-
-  console.log('%c query ', 'background: red; color: white', query);
 
   let results = books
     .filter((book) => 
@@ -20,14 +15,19 @@ export default function Search() {
       book.author.toLowerCase().includes(query.toLowerCase()) ||
       book.genre.toLowerCase().includes(query.toLowerCase()))
     .map(book => (
-      <View style={styles.row} key={book.id} >
-        <Text style={styles.cell}>{book.title}</Text>
-        <Text style={styles.cell}>{book.author}</Text>
-        <Text style={styles.cell}>{book.genre}</Text>
+      <View>
+        <Link href={`/detail/${book.id}`}>
+          <Pressable>
+            <View style={styles.row} key={book.id} >
+              <Text style={styles.cell}>{book.title}</Text>
+              <Text style={styles.cell}>{book.author}</Text>
+              <Text style={styles.cell}>{book.genre}</Text>
+            </View>
+          </Pressable>
+        </Link>
       </View>
-  ))
+  ));
 
-  console.log('%c results ', 'background: red; color: white', results);
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>

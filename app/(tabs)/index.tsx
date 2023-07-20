@@ -2,7 +2,6 @@ import { StyleSheet, Image, ScrollView, FlatList, Pressable } from 'react-native
 import { books, images } from '@/bookData';
 import { Text, View } from '@/components/Themed';
 import Search from '@/components/Search';
-import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from 'react';
 import { Link } from 'expo-router';
 
 export default function LandingPageScreen() {
@@ -148,7 +147,6 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 20,
-    // fontWeight: 'bold',
     textAlign: 'center',
     marginTop: 10,
   },

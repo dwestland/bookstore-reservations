@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, Image, Button, ScrollView } from 'react-native';
+import { StyleSheet, Image, Button } from 'react-native';
 import { Text, View } from '@/components/Themed';
 import { books, images } from '@/bookData';
 import { useRoute } from '@react-navigation/native';
@@ -21,6 +21,7 @@ interface Book {
 
 export default function DetailScreen() {
   const [book, setBook] = useState<Book | null>(null);
+  const [isReservedState, setIsReservedState] = useState<boolean>(false);
   const route = useRoute();
 
   useEffect(() => {
@@ -33,7 +34,9 @@ export default function DetailScreen() {
     }
   }, [route.params]);
 
-  const showToast = () => {
+  const handleButtonPress = () => {
+    setIsReservedState(true);
+
     Toast.show({
       type: 'success',
       text1: 'Book Reserved!',
@@ -59,18 +62,17 @@ export default function DetailScreen() {
         <Text style={styles.summary}>
           {book.summary}
         </Text>
-        <Text style={styles.bookTitle}>
-          {book.availability ? 'Reserved' : 'Available'}
+        {!isReservedState ? <Text style={styles.available}>
+          Book Available for Reservation: {!book.isReserved ? 'Yes' : 'No'}
         </Text>
-        <Text style={styles.bookTitle}>
-          {book.isReserved ? 'Reserved' : 'Available'}
-        </Text>
-        <Button
-          style={styles.button}
+        :
+        <Text style={styles.available}>
+          Book Available for Reservation: No
+        </Text>}
+        {!book.isReserved && <Button
           title="Reserve Book"
-          onPress={showToast}
-          // onPress={() => console.log('Button pressed!')}
-        />
+          onPress={handleButtonPress}
+        />}
         <Toast />
       </View>}
     </View>
@@ -113,11 +115,9 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
   },
-  rating: {
-    fontSize: 14,
-    color: '#444'
-  },
-  button: {
+  available: {
+    fontSize: 24,
     marginTop: 20,
-  }
+    marginBottom: 40,
+  },
 });
