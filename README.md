@@ -1,6 +1,6 @@
 # bookstore-reservations
 
-This app uses the latest version of React Native, using TypeScript and the Expo Router v2 (which came out earlier this month).
+This app uses the latest version of React Native, using TypeScript and the Expo Router v2 (which came out earlier this month). Dark mode and light mode are activated by OS setting.
 
 To install the dependencies, use the following command:
 
