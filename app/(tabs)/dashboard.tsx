@@ -1,7 +1,6 @@
 import { StyleSheet, Image, ScrollView, FlatList, Pressable } from 'react-native';
 import { books, images } from '@/bookData';
 import { Text, View } from '@/components/Themed';
-import Search from '@/components/Search';
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from 'react';
 import { Link } from 'expo-router';
 
@@ -13,12 +12,10 @@ export default function LandingPageScreen() {
   return (
     <View style={styles.container} >
       <ScrollView showsVerticalScrollIndicator={false}>
-      <Text style={styles.title}>Bookstore Reservations</Text>
-      <View style={styles.searchWrapper}>
-        <Search />
-      </View>
+      <Text style={styles.title}>Dashboard</Text>
+
       
-      <Text style={styles.subTitle}>Featured Books</Text>
+      <Text style={styles.subTitle}>My Reserved Books</Text>
       <View style={styles.listContainer}>
         <FlatList
           horizontal
@@ -35,7 +32,7 @@ export default function LandingPageScreen() {
                         style={styles.image}
                       />
                       <Text style={styles.cardTitle}>{item.title}</Text>
-                      <Text  style={styles.author}>by {item.author}</Text>
+                      <Text style={styles.author}>by {item.author}</Text>
                       <Text>Rating: {item.rating}/10</Text>
                     </View>
                   </Pressable>
@@ -47,7 +44,7 @@ export default function LandingPageScreen() {
         />
       </View>
 
-      <Text style={styles.subTitle}>Top Rated Books</Text>
+      <Text style={styles.subTitle}>Previously Reserved Books</Text>
       <View style={styles.listContainer}>
         <FlatList
           horizontal
@@ -64,36 +61,7 @@ export default function LandingPageScreen() {
                         style={styles.image}
                       />
                       <Text style={styles.cardTitle}>{item.title}</Text>
-                      <Text  style={styles.author}>by {item.author}</Text>
-                      <Text>Rating: {item.rating}/10</Text>
-                    </View>
-                  </Pressable>
-                </Link>
-              </View>
-            )
-          }}
-          keyExtractor={item => item.id.toString()}
-        />
-      </View>
-
-      <Text style={styles.subTitle}>Newly Added Books</Text>
-      <View style={styles.listContainer}>
-        <FlatList
-          horizontal 
-          showsHorizontalScrollIndicator={false}
-          data={newlyAddedBooks}
-          renderItem={({item}) => {
-            return (
-              <View>
-                <Link href={`/detail/${item.id}`}>
-                  <Pressable>
-                    <View style={styles.card}>
-                      <Image
-                        source={images[item.coverImage]}
-                        style={styles.image}
-                      />
-                      <Text style={styles.cardTitle}>{item.title}</Text>
-                      <Text  style={styles.author}>by {item.author}</Text>
+                      <Text style={styles.author}>by {item.author}</Text>
                       <Text>Rating: {item.rating}/10</Text>
                     </View>
                   </Pressable>
